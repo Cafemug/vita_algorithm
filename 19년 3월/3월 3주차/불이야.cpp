@@ -16,7 +16,6 @@ int bfs(){
         q.pop();
         int tx=p.first;
         int ty=p.second;
-        
         for(int i=0;i<4;i++){
             int rx = tx+ix[i];
             int ry = ty+iy[i];
