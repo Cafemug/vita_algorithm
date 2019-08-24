@@ -10,27 +10,31 @@ int ix[]={-1,1,0,0};
 int iy[]={0,0,1,-1};
 queue<pair<int,int>> q;
 int bfs(){
-    int count = -1;
+    int count = 0;
     while(!q.empty()){
-        pair<int,int> p = q.front();
-        q.pop();
-        int tx=p.first;
-        int ty=p.second;
-        for(int i=0;i<4;i++){
-            int rx = tx+ix[i];
-            int ry = ty+iy[i];
-            if(board[rx][ry]=='&')
-                return count;
-            if(rx>a || rx<1 || ry>b ||ry<1 || check[rx][ry]==true || board[rx][ry]=='#')
-                continue;
-            else{
-                check[rx][ry]=true;
-                count++;
-                q.push(make_pair(rx,ry));
+        int sq=q.size();
+        for(int x=0;x<sq;x++){
+            pair<int,int> p = q.front();
+            q.pop();
+            int tx=p.first;
+            int ty=p.second;
+            for(int i=0;i<4;i++){
+                int rx = tx+ix[i];
+                int ry = ty+iy[i];
+                if(board[rx][ry]=='&')
+                    return count;
+                if(rx>a || rx<1 || ry>b ||ry<1 || check[rx][ry]==true || board[rx][ry]=='#')
+                    continue;
+                else{
+                    check[rx][ry]=true;
+                    
+                    q.push(make_pair(rx,ry));
+                }
+                
             }
         }
-        
-        
+        count++;
+      
     }
     return -1;
 }
