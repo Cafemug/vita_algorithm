@@ -1,26 +1,32 @@
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 #include <vector>
 using namespace std;
-string temp[22];
-vector<int> v[27];
+vector<string> v(22);
+int minval=987654321, maxval=0;
+int num;
+void bin(int depth,int idx,int val){
+    if(depth>=num){
+        minval = min(minval,val);
+        maxval = max(maxval,val);
+        return;
+    }
+    bin(depth+1, idx*2,val+v[depth][idx]-64);
+    bin(depth+1, idx*2+1,val+v[depth][idx]-64);
+
+} 
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    int num;
     cin>>num;
     for (int i= 0; i<num ;i++){
-        cin>>temp[i];
+        cin>>v[i];
     }
+    bin(0,0,0);
+    cout<<minval<<"\n"<<maxval;
     
 
-    for (int i= 1; i<num ;i++){
-        int len=temp[i].size();
-        for(int t=0;t<len;t++){
-            int temp_parent = temp[i-1][int(t/2)] - 'A' + 1;
-            int temp_child = temp[i][t]- 'A' + 1;
-            v[temp_parent].push_back(temp_child);
-        }
-    }
+    
 
 }
