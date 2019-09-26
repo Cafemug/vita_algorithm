@@ -9,7 +9,10 @@ int main(){
     }
     int left=0,right=2;
     while(left<=right){
-        if(arr[left]*arr[right]>=0){
+        cout<<left<<" "<<right<<"\n";
+        if(right>n)
+            break;
+        if(arr[left]*arr[right-1]>=0){
             right++;
         }
         else{
@@ -21,7 +24,7 @@ int main(){
                 count++;
                 left++;
             }else{
-                if(arr[right]*temp>=0){
+                if(arr[right]*temp>0){
                     left++;
                 }
                 else{
