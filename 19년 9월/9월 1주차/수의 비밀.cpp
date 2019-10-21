@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(){
-    int a;
+    long long a;
     cin>>a;
     while(a>1){
         if(a%2){
